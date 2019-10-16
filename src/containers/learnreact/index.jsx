@@ -6,7 +6,7 @@ export class LearnReact extends Component {
     constructor(props){
         super(props);
         this.state = {
-            visiable:true
+            visiable:false
         }
     }
 
@@ -16,10 +16,17 @@ export class LearnReact extends Component {
         })
     }
 
+    show = () =>{
+        this.setState({
+            visiable:true
+        })
+    }
+
     render() {
         const { visiable } = this.state
         const module = (
             <div className={styles['container']}>
+                <div onClick={this.show}>测试弹窗</div>
                 <ApplyHandle visiable={visiable}>
                     <div className={styles['wrap']}>
                         <div className={styles['title']}>
