@@ -23,7 +23,7 @@ export class LearnReact extends Component {
         })
     }
 
-    input = (e) =>{
+    input = () =>{
         console.log(this.ref.current.value)
     }
 
