@@ -13,4 +13,7 @@
         "es6": true,
         "amd": true
     },
+    "rules": {
+        "no-console":"off"
+    }
 }
