@@ -30,6 +30,12 @@ const LearnReact = Loadable({
     timeout,
 })
 
+const Promise = Loadable({
+    loader: () => import("CONTAINERS/Promise/index"),
+    loading: Loading,
+    timeout,
+})
+
 
 const routerConfig=[{
     path: "/",
@@ -49,6 +55,10 @@ const routerConfig=[{
 {
     path: "/learnReact",
     component: LearnReact,
+    exact: true
+},{
+    path: "/promise",
+    component: Promise,
     exact: true
 }]
 

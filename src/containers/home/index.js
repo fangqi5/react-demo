@@ -5,7 +5,8 @@ const config = [
     { name : 'home' },
     { name : 'Antv' },
     { name : "Echarts" },
-    { name : "learnReact" }
+    { name : "learnReact" },
+    { name : "Promise" }
 ]
 export class Home extends Component {
 
@@ -27,6 +28,9 @@ export class Home extends Component {
                 break;
             case 3 :
                 data = './learnReact'
+                break;
+            case 4 : 
+                data = './promise'
                 break;
             default :
                 data = './'
