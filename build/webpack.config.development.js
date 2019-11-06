@@ -1,72 +1,102 @@
 const path = require("path");
-var MiniCssExtractPlugin = require('mini-css-extract-plugin');
-var webpack = require("webpack");
-const base = require("./webpack.config.base");
+const webpack = require("webpack");
 const merge = require("webpack-merge");
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const base = require("./webpack.config.base");
 
-module.exports=merge(base,{
-    mode:"development",
-    devtool:"source-map",
-    entry:{
-        assemble:['@babel/polyfill',path.resolve(__dirname, "../src/assemble.js")]
-    },
-    output:{
-        path:path.resolve(__dirname,"./dist"),
-        filename:"scripts/bundle.js",
+const env = process.env.NODE_TYPE;
+const entry = {
+	"react-demo": '../src/assemble.js'
+}
+const output = {
+	"react-demo": '../dist/react-demo'
+}
+
+module.exports = merge(base, {
+	mode: "development",
+	entry: {
+		assemble: ['@babel/polyfill', path.resolve(__dirname, entry[env])]
+	},
+	output: {
+		path: path.resolve(__dirname, output[env]),
+		filename: "js/[name].js",
 		chunkFilename: "js/[name].js",
 		publicPath: "/"
-    },
-    devServer:{
-        port:"8001",
-        inline:true,
-        historyApiFallback:true,
-    },
-    module:{
-        rules:[
-            {
-                test:/\.css$/,
-                use:[{
-                        loader:'style-loader'
-                    },{
-                        loader:'css-loader',
-                        options:{
-                            modules:true,
-                            localIdentName: "[local]"
-                        }
-                    }
-                ]
-            },
-            {
-                test:/\.scss$/,//sass文件编译要使用style-loader，css-loader，sass-loader，顺序不能改变，这样样式才会生效
-                use:[
-                    {
-                        loader:MiniCssExtractPlugin.loader,
-                        options:{
-                            publicPath:'../'//修改文件中loader解析规则，保证打包后的图片路径正确
-                        }
-                    },
-                    {
-                        loader:'css-loader',
-                        options:{
-                            modules:true,
-                            localIdentName: "[local]--[hash:base64:5]"
-                        }
-                    },
-                    {
-                        loader:'sass-loader',
-                    },
-                ]
-            },
-        ]
-    },
-    plugins:[
-        new MiniCssExtractPlugin({
-            filename: "./styles/[name].css",
-            chunkFilename: '[id].css',
-            ignoreOrder: false,
-        }),
-        new webpack.HotModuleReplacementPlugin(), //热加载实现有两种方式，第一在scripts中添加--hot，第二就是使用该插件，两者一起使用会报错
-        new OptimizeCssAssetsWebpackPlugin(),
-    ]
-})
+	},
+	devtool: "eval-source-map",
+	devServer: {
+		contentBase: "./dist",
+		hot: true
+	},
+	plugins: [
+		new webpack.NamedModulesPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.DefinePlugin({
+			"process.env": {
+				NODE_ENV: JSON.stringify("development")
+			}
+		})
+	],
+	module: {
+		rules: [
+			{
+				test: /\.css$/,
+				use: [{
+					loader: "style-loader",
+				}, {
+					loader: "css-loader",
+
+				}, {
+					loader: "postcss-loader",
+					options: {
+						config: {
+							path: path.resolve(__dirname,"./postcss.config.js")
+						}
+					}
+				}]
+			},
+			{
+				test: /\.scss|sass$/,
+				use: [{
+					loader: "style-loader" // 将 JS 字符串生成为 style 节点
+				}, {
+					loader: "css-loader", //
+					options: {
+						modules: true, //class局部作用域
+						localIdentName: "[local]--[hash:base64:5]"
+					}
+				}, {
+					loader: "sass-loader" // 将 Sass 编译成 CSS
+				}]
+			},
+			{
+				test: /\.less$/,
+				include: /(src)/,
+				use: [{
+					loader: "style-loader" // creates style nodes from JS strings
+				}, {
+					loader: "css-loader",   // translates CSS into CommonJS
+					options: {
+						modules: true, //class局部作用域
+						localIdentName: "[local]--[hash:base64:5]"
+					}
+				}, {
+					loader: "less-loader", // compiles Less to CSS
+				}]
+			},
+			{
+				test: /\.less$/,
+				include: /(node_modules)/,
+				use: [{
+					loader: "style-loader" // creates style nodes from JS strings
+				}, {
+					loader: "css-loader",   // translates CSS into CommonJS
+				}, {
+					loader: "less-loader", // compiles Less to CSS
+					options: {
+						javascriptEnabled: true
+					}
+				}]
+			}
+		]
+	}
+});

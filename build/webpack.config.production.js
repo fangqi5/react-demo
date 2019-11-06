@@ -1,68 +1,154 @@
 const path = require("path");
-var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require("webpack");
 const base = require("./webpack.config.base");
 const merge = require("webpack-merge");
-const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const WebpackMd5Hash = require("webpack-md5-hash");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports=merge(base,{
-    mode:"production",
-    entry:path.resolve(__dirname, "../src/assemble.js"),
-    output:{
-        path:path.resolve(__dirname,"../dist"),
-        filename:"scripts/bundle.js",
-        chunkFilename: "js/[name].[chunkhash:5].js",
-        publicPath: "/"    
+const env = process.env.NODE_TYPE;
+const entry = {
+    "react-demo": '../src/assemble.js'
+}
+const output = {
+    "react-demo": '../dist/react-demo'
+}
+
+module.exports = merge(base, {
+    mode: "production",
+    entry: {
+        activity: ['@babel/polyfill', path.resolve(__dirname, entry[env])]
     },
-    module:{
-        rules:[
-
-            {
-                test:/\.css$/,
-                use:[
-                    {
-                        loader:'style-loader'
-                    },
-                    {
-                        loader:'css-loader',
-                        options:{
-                            modules:true,
-                        }
+    output: {
+        path: path.resolve(__dirname, output[env]),
+        filename: "js/[name].[chunkhash].js",
+        chunkFilename: "js/[name].[chunkhash:5].js",
+        publicPath: "./"
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendors",
+                    priority: -20,
+                    chunks: "all",
+                    enforce: true
+                }
+            }
+        },
+        minimizer: [
+            new UglifyJsPlugin({
+                uglifyOptions:{
+                    compress :{
+                        drop_console:true,//去除console.log
                     }
-                ]
-            },
-            {
-                test:/\.(scss|sass)$/,//sass文件编译要使用style-loader，css-loader，sass-loader，顺序不能改变，这样样式才会生效
-                use:[
-                    {
-                        loader:MiniCssExtractPlugin.loader,
-                        options:{
-                            publicPath:'../'//修改文件中loader解析规则，保证打包后的图片路径正确
-                        }
-                    },
-                    {
-                        loader:'css-loader',
-                        options:{
-                            modules:true,
-                            localIdentName: "[local]--[hash:base64:5]"
-                        }
-                    },
-                    {
-                        loader:'sass-loader',
-                    },
-                ]
-            },
+                }
+            }),
+            new OptimizeCSSAssetsPlugin({})
         ]
     },
-    plugins:[
+    plugins: [
+        new WebpackMd5Hash(),
+		// new BundleAnalyzerPlugin(),
         new MiniCssExtractPlugin({
-            filename: "./dist/styles/[name].css",
-            chunkFilename: '[id].css',
-            ignoreOrder: false,
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "styles/[name].[chunkhash].css"
         }),
-        new UglifyWebpackPlugin({
-            parallel: 4
-        }),
-        new OptimizeCssAssetsWebpackPlugin(),
-    ]
-})
+        new webpack.ContextReplacementPlugin(
+            /moment[/\\]locale$/,
+            /zh-cn/,
+        ),
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        // by default it use publicPath in webpackOptions.output
+                        publicPath: "/"
+                    }
+                }, {
+                    loader: "css-loader"
+                }, {
+                    loader: "postcss-loader",
+                    options: {
+                        config: {
+                            path: path.resolve(__dirname,"./postcss.config.js")
+                        }
+                    }
+                }]
+            },
+            {
+                test: /\.scss$/,
+                use: [{
+                    loader: MiniCssExtractPlugin.loader
+                }, {
+                    loader: "css-loader",
+                    options: {
+                        modules: true, //class局部作用域
+                        localIdentName:'[local]--[hash:base64:5]'
+                    }
+                }, {
+                    loader: "postcss-loader",
+                    options: {
+                        config: {
+                            path: path.resolve(__dirname,"./postcss.config.js")
+                        }
+                    }
+                }, {
+                    loader: "sass-loader"
+                }]
+            },
+			{
+				test: /\.less$/,
+				include: /(src|MiniHeader)/,
+				use: [{
+					loader: MiniCssExtractPlugin.loader // creates style nodes from JS strings
+				}, {
+					loader: "css-loader",   // translates CSS into CommonJS
+					options: {
+						modules: true, //class局部作用域
+						localIdentName: "[local]--[hash:base64:5]"
+					}
+				}, {
+                    loader: "postcss-loader",
+                    options: {
+                        config: {
+                            path: path.resolve(__dirname,"./postcss.config.js")
+                        }
+                    }
+                }, {
+					loader: "less-loader", // compiles Less to CSS
+				}]
+			},
+			{
+				test: /\.less$/,
+				include: /(node_modules)/,
+				exclude: /MiniHeader/,
+				use: [{
+					loader: MiniCssExtractPlugin.loader // creates style nodes from JS strings
+				}, {
+					loader: "css-loader",   // translates CSS into CommonJS
+				}, {
+                    loader: "postcss-loader",
+                    options: {
+                        config: {
+                            path: path.resolve(__dirname,"./postcss.config.js")
+                        }
+                    }
+                }, {
+					loader: "less-loader", // compiles Less to CSS
+					options: {
+						javascriptEnabled: true
+					}
+				}]
+			}
+        ]
+    }
+});

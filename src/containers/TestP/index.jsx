@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
 // import axios from 'axios'
 
-export class Promise extends Component {
+export class Promises extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -38,4 +38,4 @@ export class Promise extends Component {
 
 }
 
-export default Promise
+export default Promises
