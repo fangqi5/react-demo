@@ -3,30 +3,39 @@ import React, { Component } from 'react'
 // import axios from 'axios'
 
 export class Promise extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isShowNum:false
+        }
+    }
     static propTypes = {
 
     }
 
     testPromise = () =>{
-        console.log(222)
-        new Promise(()=>{
-            console.log(111111)
+        new Promise((resolve)=>{
+            // axios('get','https://fangqi5/test').then((json)=>{
+            //     console.log(json)
+            // })
+            resolve(console.log(1111))
         }).then(()=>{
-            console.log(333)
+            console.log(122222)
+            this.setState({
+                isShowNum:!this.state.isShowNum
+            })
         })
-        // axios('get','https://fangqi5/test').then((json)=>{
-        //     console.log(json)
-        // })
     }
 
     render() {
         return (
             <div>
-                { this.testPromise() }
-                111
+                <button onClick={this.testPromise}>11111</button>
+                <span>{ this.state.isShowNum ? 2222 : '' }</span>
             </div>
         )
     }
+
 }
 
 export default Promise

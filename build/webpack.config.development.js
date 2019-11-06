@@ -8,7 +8,9 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 module.exports=merge(base,{
     mode:"development",
     devtool:"source-map",
-    entry:['@babel/polyfill',path.resolve(__dirname, "../src/assemble.js")],
+    entry:{
+        assemble:['@babel/polyfill',path.resolve(__dirname, "../src/assemble.js")]
+    },
     output:{
         path:path.resolve(__dirname,"./dist"),
         filename:"scripts/bundle.js",
