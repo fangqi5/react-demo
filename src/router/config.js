@@ -36,6 +36,11 @@ const Promises = Loadable({
     timeout,
 })
 
+const Pages = Loadable({
+    loader: () => import("CONTAINERS/pages/index"),
+    loading: Loading,
+    timeout,
+})
 
 const routerConfig=[{
     path: "/",
@@ -59,6 +64,10 @@ const routerConfig=[{
 },{
     path: "/promise",
     component: Promises,
+    exact: true
+},{
+    path: "/pages",
+    component: Pages,
     exact: true
 }]
 

@@ -6,7 +6,8 @@ const config = [
     { name : 'Antv' },
     { name : "Echarts" },
     { name : "learnReact" },
-    { name : "Promise" }
+    { name : "Promise" },
+    { name : "pages" }
 ]
 export class Home extends Component {
 
@@ -31,6 +32,9 @@ export class Home extends Component {
                 break;
             case 4 : 
                 data = './promise'
+                break;
+            case 5 : 
+                data = './pages'
                 break;
             default :
                 data = './'
