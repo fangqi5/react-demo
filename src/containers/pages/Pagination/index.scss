@@ -1,0 +1,88 @@
+.container{
+    text-align: center;
+    span{
+        display: inline-block;
+        vertical-align: middle;
+        color: #333;
+        border: #333 1px solid;
+        width: 17px;
+        height: 17px;
+        text-align: center;
+        line-height: 17px;
+        margin-right: 10px;
+        &:active{
+            border: #2cd18a 1px solid;
+            color: #2cd18a;
+        }
+    }
+    .active{
+        background-color: #2cd18a;
+        color: #fff;
+    }
+    .detail{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    input{
+        width: 30px;
+        margin-left: 3px;
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    }
+    .btnWrap{
+        display: inline-block;
+        vertical-align: middle;
+        height: 23px;
+        overflow: hidden;
+        margin-right: 10px;
+        .confirmBtn{
+            background: #2cd18a;
+            color: #fff;
+            vertical-align: middle;
+            height: 23px;
+            width: 45px;
+            display: none;
+        }
+        .animation{
+            display: inline-block;
+            animation: fadeIn 0.5s linear;
+        }
+        .animationOver{
+            display: inline-block;
+            animation: fadeOut 0.5s linear;
+            margin-left: -45px;
+        }
+        b{
+            display: inline-block;
+        }
+    }
+    a{
+        display: inline-block;
+        vertical-align: middle;
+        text-decoration: none;
+        color: #333;
+        border: #333 1px solid;
+        margin-right: 10px;
+        &:active{
+            color: #2cd18a;
+            border: #2cd18a 1px solid;
+        }
+    }
+}
+@keyframes fadeOut{
+    from{
+        margin-left: 0px;
+    }
+    to{
+        margin-left: -45px;
+    }
+}
+@keyframes fadeIn{
+    from{
+        margin-left: -45px;
+    }
+    to{
+        margin-left: 0;
+    }
+}

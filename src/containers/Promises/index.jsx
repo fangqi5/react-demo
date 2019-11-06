@@ -16,7 +16,7 @@ export class Promises extends Component {
     testPromise = () =>{
         new Promise((resolve)=>{
             axios.get('http://www.mocky.io/v2/5dc23b762f000069004bdedd').then((json)=>{
-                console.log(json)
+                console.log(json,55)
             })
             resolve(console.log(1111))
         }).then(()=>{
