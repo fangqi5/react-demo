@@ -81,6 +81,12 @@ export class Pagination extends Component {
         this.setState({
             showBtn:value
         })
+        if( value === 2 ){
+            let btn = document.getElementById('btn')
+            btn.addEventListener('animationend',()=>{
+                btn.style.display = 'none'
+            })
+        }
     }
 
     toPage = () => {
@@ -122,7 +128,7 @@ export class Pagination extends Component {
                     onBlur={()=>this.showBtn(2)} 
                 />
                 <div className={styles['btnWrap']}>
-                    <div className={`${styles['confirmBtn']} ${ showBtn === 0 ? '' : (showBtn === 1 ? `${styles['animation']}` : `${styles['animationOver']}`)} `}
+                    <div className={`${styles['confirmBtn']}  ${ showBtn === 0 ? '' : (showBtn === 1 ? `${styles['animation']}` : `${styles['animationOver']}`)} `} id="btn"
                         onClick={this.toPage}
                     >确定</div>
                     <b>页</b>

@@ -13,7 +13,7 @@ const Home = Loadable({
 });
 
 const Antv = Loadable({
-    loader: () => import("CONTAINERS/Antv/index"),
+    loader: () => import("CONTAINERS/Antv/G2/index"),
     loading: Loading,
     timeout,
 })

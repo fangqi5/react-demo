@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import G2 from '@antv/g2';
+import StackedHistogram from './stackedhistogram'
 
 export class Gtwo extends Component {
 
@@ -31,7 +32,10 @@ export class Gtwo extends Component {
 
     render() {
         return (
-            <div id='c1'>
+            <div>
+                <div id='c1'>
+                </div>
+                <StackedHistogram />
             </div>
         )
     }

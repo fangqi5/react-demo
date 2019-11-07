@@ -43,6 +43,7 @@
             height: 23px;
             width: 45px;
             display: none;
+            position: relative;
         }
         .animation{
             display: inline-block;
@@ -51,7 +52,7 @@
         .animationOver{
             display: inline-block;
             animation: fadeOut 0.5s linear;
-            margin-left: -45px;
+            left: -45px;
         }
         b{
             display: inline-block;
@@ -72,17 +73,17 @@
 }
 @keyframes fadeOut{
     from{
-        margin-left: 0px;
+        left: 0px;
     }
     to{
-        margin-left: -45px;
+        left: -45px;
     }
 }
 @keyframes fadeIn{
     from{
-        margin-left: -45px;
+        left: -45px;
     }
     to{
-        margin-left: 0;
+        left: 0;
     }
 }
