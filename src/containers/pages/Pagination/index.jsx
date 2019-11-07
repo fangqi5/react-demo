@@ -12,8 +12,10 @@ export class Pagination extends Component {
             curPage:1,
             data:[...props.data],
             inputValue:'',
-            showBtn:0
+            showBtn:0,
+            left:-35
         }
+        this.btn = React.createRef()
     }
 
     componentDidMount(){
@@ -81,11 +83,35 @@ export class Pagination extends Component {
         this.setState({
             showBtn:value
         })
-        if( value === 2 ){
-            let btn = document.getElementById('btn')
-            btn.addEventListener('animationend',()=>{
-                btn.style.display = 'none'
+        value === 1 ? this.fadeOut() : this.fadeIn()
+        
+    }
+
+    fadeOut = () => {
+        let { left } = this.state
+        if(left < 0 ){
+            this.setState({
+                left:left + 1
+            },()=>{ 
+                this.btn.current.style.left = (left + 1)+'px'
+                this.fadeOuts = requestAnimationFrame(this.fadeOut)
             })
+        }else{
+            cancelAnimationFrame(this.fadeOuts)
+        }
+    }
+
+    fadeIn = () => {
+        let { left } = this.state
+        if(left > -35 ){
+            this.setState({
+                left:left - 1
+            },()=>{ 
+                this.btn.current.style.left = (left - 1)+'px'
+                this.fadeIns = requestAnimationFrame(this.fadeIn)
+            })
+        }else{
+            cancelAnimationFrame(this.fadeIns)
         }
     }
 
@@ -110,7 +136,7 @@ export class Pagination extends Component {
     }
 
     render() {
-        const { totalNum,curPage,data,totalPage,inputValue,showBtn } = this.state
+        const { totalNum,curPage,data,totalPage,inputValue} = this.state
         return (
             <div className={styles['container']}>
                 <a href="javascripts:void(0)" className={`iconfont`} onClick={()=>this.choosePage(1,1)} >&#xe659;</a>
@@ -121,6 +147,7 @@ export class Pagination extends Component {
                         )
                     })
                 }
+                <a href="javascripts:void(0)" className={`iconfont`} onClick={()=>this.choosePage(3,1)} >&#xe65b;</a>
                 <div className={styles['detail']}>共{totalPage}页,{data.length}条数据,去</div>
                 <input type='number' maxLength={totalPage} value={inputValue} 
                     onChange={this.inputPage} 
@@ -128,12 +155,13 @@ export class Pagination extends Component {
                     onBlur={()=>this.showBtn(2)} 
                 />
                 <div className={styles['btnWrap']}>
-                    <div className={`${styles['confirmBtn']}  ${ showBtn === 0 ? '' : (showBtn === 1 ? `${styles['animation']}` : `${styles['animationOver']}`)} `} id="btn"
-                        onClick={this.toPage}
-                    >确定</div>
-                    <b>页</b>
+                    <div className={styles['cover']} ref={this.btn}>
+                        <div className={`${styles['confirmBtn']} `} id="btn" 
+                            onClick={this.toPage}
+                        >确定</div>
+                        <b>页</b>
+                    </div>
                 </div>
-                <a href="javascripts:void(0)" className={`iconfont`} onClick={()=>this.choosePage(3,1)} >&#xe65b;</a>
             </div>
         )
     }

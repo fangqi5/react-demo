@@ -25,6 +25,7 @@
     }
     input{
         width: 30px;
+        height: 18px;
         margin-left: 3px;
         &::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -36,27 +37,23 @@
         height: 23px;
         overflow: hidden;
         margin-right: 10px;
-        .confirmBtn{
-            background: #2cd18a;
-            color: #fff;
-            vertical-align: middle;
-            height: 23px;
-            width: 45px;
-            display: none;
+        position: relative;
+        .cover{
             position: relative;
+            left: -32px;
+            .confirmBtn{
+                background: #2cd18a;
+                color: #fff;
+                vertical-align: middle;
+                height: 23px;
+                display: inline-block;
+            }
+            b{
+                display: inline-block;
+                vertical-align: middle;
+            }
         }
-        .animation{
-            display: inline-block;
-            animation: fadeIn 0.5s linear;
-        }
-        .animationOver{
-            display: inline-block;
-            animation: fadeOut 0.5s linear;
-            left: -45px;
-        }
-        b{
-            display: inline-block;
-        }
+        
     }
     a{
         display: inline-block;
