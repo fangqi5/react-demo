@@ -1,2 +1,1 @@
-# reactDemo
-# 此项目为学习react日常
+# 此项目为react练习demo
