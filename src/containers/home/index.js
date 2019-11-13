@@ -7,7 +7,8 @@ const config = [
     { name : "Echarts" },
     { name : "learnReact" },
     { name : "Promise" },
-    { name : "pages" }
+    { name : "pages" },
+    { name : "canvas" }
 ]
 export class Home extends Component {
 
@@ -35,6 +36,9 @@ export class Home extends Component {
                 break;
             case 5 : 
                 data = './pages'
+                break;
+            case 6 : 
+                data = './canvas'
                 break;
             default :
                 data = './'
