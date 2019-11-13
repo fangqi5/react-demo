@@ -16,8 +16,6 @@ export class Pages extends Component {
             dataList:value
         })
     }
-    
-
     render() {
         const { dataList } = this.state
         const module = (

@@ -9,9 +9,7 @@ export class Promises extends Component {
             isShowNum:false
         }
     }
-    static propTypes = {
 
-    }
 
     testPromise = () =>{
         new Promise((resolve)=>{
