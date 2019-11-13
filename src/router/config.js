@@ -42,6 +42,12 @@ const Pages = Loadable({
     timeout,
 })
 
+const Canvas = Loadable({
+    loader: () => import("CONTAINERS/canvas/index"),
+    loading: Loading,
+    timeout,
+})
+
 const routerConfig=[{
     path: "/",
     component: Home, // 2019.9.19 - xx
@@ -68,6 +74,10 @@ const routerConfig=[{
 },{
     path: "/pages",
     component: Pages,
+    exact: true
+},{
+    path: "/canvas",
+    component: Canvas,
     exact: true
 }]
 
