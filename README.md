@@ -7,7 +7,7 @@
 
 * 这个操作是针对一个独立的仓库，不能是fork
 
-### Commits
+### 2. Commits
 **当你的commits满足以下条件时，它才会被展示出来：**
 
 * 一年之内提交的commits
@@ -32,7 +32,7 @@
 
 **注意：私有库的贡献仅仅对私有库成员显示**
 
-### Contributions未被Github计入的几个常见原因
+### 3. Contributions未被Github计入的几个常见原因
 * 进行Commits的用户没有被关联到你的Github帐号中。
 
 * 不是在这个版本库的默认分支进行的Commit。
