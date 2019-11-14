@@ -8,7 +8,8 @@ const config = [
     { name : "learnReact" },
     { name : "Promise" },
     { name : "pages" },
-    { name : "canvas" }
+    { name : "canvas" },
+    { name : "sort" }
 ]
 export class Home extends Component {
 
@@ -39,6 +40,9 @@ export class Home extends Component {
                 break;
             case 6 : 
                 data = './canvas'
+                break;
+            case 7 : 
+                data = './sort'
                 break;
             default :
                 data = './'

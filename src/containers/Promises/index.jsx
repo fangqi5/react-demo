@@ -6,32 +6,48 @@ export class Promises extends Component {
     constructor(props){
         super(props);
         this.state = {
-            isShowNum:false
+            
         }
     }
 
 
     testPromise = () =>{
-        new Promise((resolve)=>{
-            axios.get('http://www.mocky.io/v2/5dc23b762f000069004bdedd').then((json)=>{
-                console.log(json,55)
+        new Promise((resolve,reject)=>{
+            axios.get('http://www.mocky.io/v2/5dc23b762f000069004bdedd').then(()=>{
+                setTimeout(() => {
+                    console.log('1',new Date)
+                }, 1000);
             })
-            resolve(console.log(1111))
+            reject()
+            for(let j=0;j<1000;j++){
+                if(j === 999){
+                    console.log('j',new Date())
+                }
+            }
+        }).then((json)=>{
+            console.log('2',new Date)
+            axios.get('http://www.mocky.io/v2/5dc23b762f000069004bdedd').then(()=>{
+                setTimeout(() => {
+                    console.log('5',new Date)
+                }, 1000);
+                console.log('4',new Date)
+            })
+            console.log('json',json)
+            for(let i=0;i<1000;i++){
+                if(i === 999){
+                    console.log('i',new Date())
+                }
+            }
+            console.log('6',new Date)
         }).then(()=>{
-            console.log(122222)
-            this.setState({
-                isShowNum:!this.state.isShowNum
-            })
-        }).catch((error)=>{
-            console.log(error)
+            console.log('3',new Date)
         })
     }
 
     render() {
         return (
             <div>
-                <button onClick={this.testPromise}>11111</button>
-                <span>{ this.state.isShowNum ? 2222 : '' }</span>
+                <button onClick={this.testPromise}>测试Promise</button>
             </div>
         )
     }

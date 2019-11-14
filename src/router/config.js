@@ -48,6 +48,12 @@ const Canvas = Loadable({
     timeout,
 })
 
+const Sort = Loadable({
+    loader: () => import("CONTAINERS/sort/index"),
+    loading: Loading,
+    timeout,
+})
+
 const routerConfig=[{
     path: "/",
     component: Home, // 2019.9.19 - xx
@@ -78,6 +84,11 @@ const routerConfig=[{
 },{
     path: "/canvas",
     component: Canvas,
+    exact: true
+},
+{
+    path: "/sort",
+    component: Sort,
     exact: true
 }]
 
