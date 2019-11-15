@@ -54,6 +54,12 @@ const Sort = Loadable({
     timeout,
 })
 
+const Carousel = Loadable({
+    loader: () => import("CONTAINERS/carousel/index"),
+    loading: Loading,
+    timeout,
+})
+
 const routerConfig=[{
     path: "/",
     component: Home, // 2019.9.19 - xx
@@ -89,6 +95,11 @@ const routerConfig=[{
 {
     path: "/sort",
     component: Sort,
+    exact: true
+},
+{
+    path: "/carousel",
+    component: Carousel,
     exact: true
 }]
 

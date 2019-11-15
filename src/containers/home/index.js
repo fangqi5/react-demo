@@ -9,7 +9,8 @@ const config = [
     { name : "Promise" },
     { name : "pages" },
     { name : "canvas" },
-    { name : "sort" }
+    { name : "sort" },
+    { name : "carousel" }
 ]
 export class Home extends Component {
 
@@ -43,6 +44,9 @@ export class Home extends Component {
                 break;
             case 7 : 
                 data = './sort'
+                break;
+            case 8 : 
+                data = './carousel'
                 break;
             default :
                 data = './'
