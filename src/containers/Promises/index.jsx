@@ -12,13 +12,13 @@ export class Promises extends Component {
 
 
     testPromise = () =>{
-        new Promise((resolve,reject)=>{
+        new Promise(()=>{
             axios.get('http://www.mocky.io/v2/5dc23b762f000069004bdedd').then(()=>{
                 setTimeout(() => {
                     console.log('1',new Date)
                 }, 1000);
             })
-            reject()
+            // reject()
             for(let j=0;j<1000;j++){
                 if(j === 999){
                     console.log('j',new Date())

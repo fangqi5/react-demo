@@ -60,6 +60,12 @@ const Carousel = Loadable({
     timeout,
 })
 
+const AboutThis = Loadable({
+    loader: () => import("CONTAINERS/aboutThis/index"),
+    loading: Loading,
+    timeout,
+})
+
 const routerConfig=[{
     path: "/",
     component: Home, // 2019.9.19 - xx
@@ -100,6 +106,11 @@ const routerConfig=[{
 {
     path: "/carousel",
     component: Carousel,
+    exact: true
+},
+{
+    path: "/this",
+    component: AboutThis,
     exact: true
 }]
 

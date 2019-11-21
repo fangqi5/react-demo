@@ -34,18 +34,36 @@ export class StackedHistogram extends Component {
             chart.source(data);
             // Step 3：创建图形语法，绘制柱状图，由 genre 和 sold 两个属性决定图形位置，genre 映射至 x 轴，sold 映射至 y 轴
             // chart.coord().transpose();
-            chart.axis('x', {
+            chart.axis('genre', {
                 line: {
                     stroke: "#fc3000",
                     lineDash:[2,3],
                     strokeOpacity:1
                 },
+                grid: {
+                    type: 'line',
+                    lineStyle: {
+                        stroke: '#2f4b80',//'rgba(47,75,128.0)',
+                        lineWidth: 1,
+                        lineDash: [4, 4]
+                    },
+                },
                 label:{
-                    rotate:90,
+                    rotate:0,
                     textStyle:{
                         fill:'blue'
                     }
                 }
+            })
+            chart.axis('sold',{
+                grid: {
+                    type: 'line',
+                    lineStyle: {
+                        stroke: '#2f4b80',//'rgba(47,75,128.0)',
+                        lineWidth: 1,
+                        lineDash: [4, 4]
+                    },
+                },
             })
             chart.legend(false)
             chart.intervalStack().position('genre*sold').color('type',function(type){
