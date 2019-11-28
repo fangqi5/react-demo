@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import styles from './index.scss'
-import config from './data'
+import config  from './data'
 import Pagination from './Pagination'
 // import PropTypes from 'prop-types'
+console.log(config)
 export class Pages extends Component {
     constructor(props){
         super(props);
         this.state = {
-            dataList:[...config].splice(0,10)
+            dataList:[...config.list].splice(0,10)
         }
     }
 
@@ -25,12 +26,12 @@ export class Pages extends Component {
                         {
                             dataList.map((item,index)=>{
                                 return (
-                                    <li key={index}>{index + item.value }222</li>
+                                    <li key={index}>{index + 1 + '.' + item.value }</li>
                                 )
                             })
                         }
                     </ul>
-                    <Pagination totalCount={config.length} data={config} callback={this.setDataList} />
+                    <Pagination totalCount={config.list.length} data={config.list} callback={this.setDataList} />
                 </div>
         )
 

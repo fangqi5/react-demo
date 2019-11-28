@@ -66,6 +66,12 @@ const AboutThis = Loadable({
     timeout,
 })
 
+const MockData = Loadable({
+    loader: () => import("CONTAINERS/mock/index"),
+    loading: Loading,
+    timeout,
+})
+
 const routerConfig=[{
     path: "/",
     component: Home, // 2019.9.19 - xx
@@ -111,6 +117,11 @@ const routerConfig=[{
 {
     path: "/this",
     component: AboutThis,
+    exact: true
+},
+{
+    path: "/mock",
+    component: MockData,
     exact: true
 }]
 

@@ -143,7 +143,7 @@ export class Pagination extends Component {
                 {
                     totalNum&&totalNum.map((item,index)=>{
                         return (
-                            <span key={index} className={`${curPage - 1 === index ? `${styles['active']}` : '' }`} onClick={()=>this.choosePage(2,index + 1 )} >{ item }</span>
+                        <span key={index} className={`${curPage == item ? `${styles['active']}` : '' }`} onClick={()=>this.choosePage(2,index + 1 )} >{ item }</span>
                         )
                     })
                 }

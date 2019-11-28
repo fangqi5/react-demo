@@ -1,7 +1,7 @@
 .container{
     text-align: center;
+    margin-top: 10px;
     span{
-        display: inline-block;
         vertical-align: middle;
         color: #333;
         border: #333 1px solid;
@@ -10,6 +10,7 @@
         text-align: center;
         line-height: 17px;
         margin-right: 10px;
+        padding: 0 4px;
         &:active{
             border: #2cd18a 1px solid;
             color: #2cd18a;
