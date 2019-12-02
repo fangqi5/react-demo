@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
 
+function global(){
+    console.log('global')
+}
 
 export class AboutThis extends Component {
     constructor(props){
@@ -27,6 +30,7 @@ export class AboutThis extends Component {
         let callObject = {
             name:'susan'
         }
+        global()
         this.names() //this指向window
         this.names.call(callObject) //this指向callObject对象
         //测试使用call借用其他对象的方法

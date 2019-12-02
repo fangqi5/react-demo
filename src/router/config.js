@@ -72,13 +72,19 @@ const MockData = Loadable({
     timeout,
 })
 
+const F2chart = Loadable({
+    loader: () => import("CONTAINERS/Antv/F2/index"),
+    loading: Loading,
+    timeout,
+})
+
 const routerConfig=[{
     path: "/",
     component: Home, // 2019.9.19 - xx
     exact: true,
 },
 {
-    path: "/antv",
+    path: "/g2",
     component: Antv,
     exact: true
 },
@@ -122,6 +128,11 @@ const routerConfig=[{
 {
     path: "/mock",
     component: MockData,
+    exact: true
+},
+{
+    path: "/f2",
+    component: F2chart,
     exact: true
 }]
 
