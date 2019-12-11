@@ -26,8 +26,9 @@ export class Carousel extends Component {
     action = () => {
         let li = document.querySelectorAll('li')
         let point = document.querySelectorAll('.points')
-        // console.log(point)
-        if(curPicIndex <= 3){
+        if(curPicIndex === 1){
+            point[0].style.backgroundColor = 'red'
+        }
             if(translateX !== 200*curPicIndex){
                 li.forEach( item =>{
                     item.style.transform = `translateX(${ -translateX + 'px' })`
@@ -35,15 +36,11 @@ export class Carousel extends Component {
                 translateX = translateX + 1
                 requestAnimationFrame(this.action)
             }else{
-                    curPicIndex = curPicIndex + 1
+                curPicIndex = curPicIndex + 1
                 setTimeout(() => {
-                    if(curPicIndex === 3){
-                        li.forEach( item =>{
-                            item.style.transform = `translateX(${ -translateX + 'px' })`
-                        } )
-                        translateX = translateX + 1
-                        translateX = 0
-                        curPicIndex = 1
+                    if(curPicIndex > 3 ){
+                            curPicIndex = 1 
+                            translateX = 0
                         requestAnimationFrame(this.action)
                     }else{
                         translateX = translateX + 1
@@ -51,16 +48,17 @@ export class Carousel extends Component {
                     }
                 }, 1000);
             }
-        }
-        
-        console.log(curPicIndex)
-        point.forEach( (dom,cur) =>{
-            if(cur + 1 === curPicIndex){
-                dom.style.backgroundColor = 'red'
-            }else{
-                dom.style.backgroundColor = 'blue'
-            }
-        })
+            setTimeout(() => {
+                point.forEach( (dom,cur) =>{
+                    if(cur + 1 === curPicIndex){
+                        dom.style.backgroundColor = 'red'
+                    }else{
+                        dom.style.backgroundColor = 'blue'
+                    }
+                })
+            }, 1050);
+
+            
     }
 
     render(){
