@@ -24,16 +24,17 @@
                 object-fit: fill;
             }
         }
-        .active{
-            animation: carousel;
+        .point{
+            z-index: 2;
+            display: inline-block;
+            width: 10px;
+            height: 8px;
+            position: absolute;
+            top: 190px;
+            background-color: blue;
         }
-    }
-}
-@keyframes carousel{
-    0%{
-        transform:translateX(0px)
-    }
-    100%{
-        transform:translateX(-400px)
+        .active{
+            background-color: red;
+        }
     }
 }

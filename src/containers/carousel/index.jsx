@@ -14,34 +14,36 @@ export class Carousel extends Component {
             imgs:[
                 pic1,pic2,pic3,pic1
             ],
+            num:[1,2,3],
             curPicIndex : 1
         }
     }
 
     componentDidMount(){
         this.action()
-        // window.addEventListener('')
     }
 
     action = () => {
         let li = document.querySelectorAll('li')
+        let point = document.querySelectorAll('.points')
+        // console.log(point)
         if(curPicIndex <= 3){
-            if(translateX != 200*curPicIndex){
+            if(translateX !== 200*curPicIndex){
                 li.forEach( item =>{
                     item.style.transform = `translateX(${ -translateX + 'px' })`
                 } )
                 translateX = translateX + 1
                 requestAnimationFrame(this.action)
             }else{
-                
+                    curPicIndex = curPicIndex + 1
                 setTimeout(() => {
-                    if(curPicIndex ===3 && translateX === 200 * curPicIndex){
-                        translateX = 0
+                    if(curPicIndex === 3){
                         li.forEach( item =>{
                             item.style.transform = `translateX(${ -translateX + 'px' })`
                         } )
-                        curPicIndex = 1
                         translateX = translateX + 1
+                        translateX = 0
+                        curPicIndex = 1
                         requestAnimationFrame(this.action)
                     }else{
                         translateX = translateX + 1
@@ -49,12 +51,20 @@ export class Carousel extends Component {
                     }
                 }, 1000);
             }
-            translateX <= 200*curPicIndex ? '' : curPicIndex = curPicIndex + 1
         }
+        
+        console.log(curPicIndex)
+        point.forEach( (dom,cur) =>{
+            if(cur + 1 === curPicIndex){
+                dom.style.backgroundColor = 'red'
+            }else{
+                dom.style.backgroundColor = 'blue'
+            }
+        })
     }
 
     render(){
-        const { imgs } = this.state
+        const { imgs,num } = this.state
         return (
             <div className={styles['curousel']}>
                 <ul className={styles['view']}>
@@ -67,6 +77,11 @@ export class Carousel extends Component {
                         )
                     })
                 }
+                { num.map((blank,num)=>{
+                    return (
+                        <span key={num} style={{ left:780 + num * 20 + 'px'}} className={`points ${styles['point']}`}></span>
+                    )
+                }) }
                 </ul>
             </div>
         )
