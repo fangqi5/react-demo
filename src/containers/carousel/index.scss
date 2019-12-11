@@ -1,0 +1,39 @@
+.curousel{
+    width: 600px;
+    height: 200px;
+    margin: 0 auto;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    border: 1px red solid;
+    .view{
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        list-style: none;
+        padding: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        li{
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: fill;
+            }
+        }
+        .active{
+            animation: carousel;
+        }
+    }
+}
+@keyframes carousel{
+    0%{
+        transform:translateX(0px)
+    }
+    100%{
+        transform:translateX(-400px)
+    }
+}
