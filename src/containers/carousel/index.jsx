@@ -26,38 +26,36 @@ export class Carousel extends Component {
     action = () => {
         let li = document.querySelectorAll('li')
         let point = document.querySelectorAll('.points')
-        if(curPicIndex === 1){
+        if(translateX !== 200*curPicIndex){
+            li.forEach( item =>{
+                item.style.transform = `translateX(${ -translateX + 'px' })`
+            } )
+            translateX = translateX + 1
+            requestAnimationFrame(this.action)
+        }else{
+            curPicIndex = curPicIndex + 1
+            setTimeout(() => {
+                if(curPicIndex > 3 ){
+                    curPicIndex = 1 
+                    translateX = 0
+                    requestAnimationFrame(this.action)
+                }else{
+                    translateX = translateX + 1
+                    requestAnimationFrame(this.action)
+                }
+            }, 1000);
+        }
+        point.forEach( (dom,cur) =>{
+            if(cur + 1 === curPicIndex){
+                dom.style.backgroundColor = 'red'
+            }else{
+                dom.style.backgroundColor = 'blue'
+            }
+        })
+
+        if(curPicIndex === 4){
             point[0].style.backgroundColor = 'red'
         }
-            if(translateX !== 200*curPicIndex){
-                li.forEach( item =>{
-                    item.style.transform = `translateX(${ -translateX + 'px' })`
-                } )
-                translateX = translateX + 1
-                requestAnimationFrame(this.action)
-            }else{
-                curPicIndex = curPicIndex + 1
-                setTimeout(() => {
-                    if(curPicIndex > 3 ){
-                            curPicIndex = 1 
-                            translateX = 0
-                        requestAnimationFrame(this.action)
-                    }else{
-                        translateX = translateX + 1
-                        requestAnimationFrame(this.action)
-                    }
-                }, 1000);
-            }
-            setTimeout(() => {
-                point.forEach( (dom,cur) =>{
-                    if(cur + 1 === curPicIndex){
-                        dom.style.backgroundColor = 'red'
-                    }else{
-                        dom.style.backgroundColor = 'blue'
-                    }
-                })
-            }, 1050);
-
             
     }
 
@@ -77,7 +75,7 @@ export class Carousel extends Component {
                 }
                 { num.map((blank,num)=>{
                     return (
-                        <span key={num} style={{ left:780 + num * 20 + 'px'}} className={`points ${styles['point']}`}></span>
+                        <span key={num} style={{ left:80 + num * 20 + 'px'}} className={`points ${styles['point']}`}></span>
                     )
                 }) }
                 </ul>
