@@ -72,6 +72,12 @@ export class Carousel extends Component {
                         )
                     })
                 }
+                <div className={`${ styles['left-btn'] }`}>
+                    <i className={` iconfont iconzuojiantou-copy `}></i>
+                </div>
+                <div className={`${ styles['right-btn'] }`}>
+                    <i className={` iconfont iconyoujiantou-copy `}></i>
+                </div>
                 { 
                     num.map((blank,num)=>{
                         return (

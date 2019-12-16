@@ -34,6 +34,26 @@
             left: 50%;
             background-color: blue;
         }
+        .left-btn{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: aqua;
+            opacity: 0.6;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .right-btn{
+            @extend .left-btn;
+            left: 100%;
+            transform: translate(-100%,-50%);
+        }
         .active{
             background-color: red;
         }
