@@ -23,6 +23,7 @@ export class Carousel extends Component {
     }
 
     action = () => {
+        console.log(111)
         let li = document.querySelectorAll('li')
         let point = document.querySelectorAll('.secPoints')
         if(translateX !== 200*curPicIndex){
@@ -30,17 +31,17 @@ export class Carousel extends Component {
                 item.style.transform = `translateX(${ -translateX + 'px' })`
             } )
             translateX = translateX + 1
-            requestAnimationFrame(this.action)
+            window.cancel =  requestAnimationFrame(this.action)
         }else{
             curPicIndex = curPicIndex + 1
-            setTimeout(() => {
+            this.time1 = setTimeout(() => {
                 if(curPicIndex > 3 ){
                     curPicIndex = 1 
                     translateX = 0
-                    requestAnimationFrame(this.action)
+                    window.cancel = requestAnimationFrame(this.action)
                 }else{
                     translateX = translateX + 1
-                    requestAnimationFrame(this.action)
+                    window.cancel = requestAnimationFrame(this.action)
                 }
             }, 1000);
         }
@@ -58,6 +59,16 @@ export class Carousel extends Component {
             
     }
 
+    switch = () => {
+        console.log(222)
+        cancelAnimationFrame(window.cancel)
+    }
+
+    switchLeft = () => {
+        console.log(window.cancel)
+        window.cancel = requestAnimationFrame(this.action)
+    }
+
     render(){
         const { imgs,num } = this.state
         return (
@@ -72,10 +83,10 @@ export class Carousel extends Component {
                         )
                     })
                 }
-                <div className={`${ styles['left-btn'] }`}>
-                    <i className={` iconfont iconzuojiantou-copy `}></i>
+                <div className={`${ styles['left-btn'] }`} onClick={ this.switchLeft }>
+                    <i className={` iconfont iconzuojiantou-copy `} ></i>
                 </div>
-                <div className={`${ styles['right-btn'] }`}>
+                <div className={`${ styles['right-btn'] }`} onClick={ this.switch }>
                     <i className={` iconfont iconyoujiantou-copy `}></i>
                 </div>
                 { 
