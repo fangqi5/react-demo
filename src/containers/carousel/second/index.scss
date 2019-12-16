@@ -1,0 +1,41 @@
+.curousel{
+    width: 600px;
+    height: 200px;
+    margin: 0 auto;
+    border: 1px red solid;
+    .view{
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        list-style: none;
+        padding: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        li{
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: fill;
+            }
+        }
+        .point{
+            z-index: 2;
+            display: inline-block;
+            width: 10px;
+            height: 8px;
+            position: absolute;
+            top: 190px;
+            left: 50%;
+            background-color: blue;
+        }
+        .active{
+            background-color: red;
+        }
+    }
+}
