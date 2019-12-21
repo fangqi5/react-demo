@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.container{
+    background-color: #f5f4f6;
+    height: 100vh;
+    width: 100vh;
+    position: relative;
+    header{
+        background-color: #fff;
+        h2{
+            margin: 0;
+        }
+        h3{
+            margin: 0;
+        }
+    }
+    .middle{
+        width: 100%;
+        height: 200px;
+        background-color: #f9f9f9;
+        overflow-x: hidden;
+        overflow-y: auto;
+        margin-top: 100px;
+        // canvas{
+        //     background-color: #F6cedb;
+        // }
+    }
+
+    .confirmBtn{
+        background-color: #eb3f55;
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        font-size: 16px;
+        line-height: 40px;
+        color: #f6f6f6;
+        position: fixed;
+        bottom: 0;
+    }
+}

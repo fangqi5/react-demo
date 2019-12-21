@@ -1,0 +1,98 @@
+[
+    {
+        "id":1,
+        "isSold":false,
+        "x":1,
+        "y":1
+    }, {
+        "id":2,
+        "isSold":false,
+        "x":1,
+        "y":2
+    }, {
+        "id":3,
+        "isSold":false,
+        "x":1,
+        "y":3
+    }, {
+        "id":4,
+        "isSold":false,
+        "x":1,
+        "y":4
+    }, {
+        "id":5,
+        "isSold":false,
+        "x":1,
+        "y":5
+    }, {
+        "id":6,
+        "isSold":true,
+        "x":1,
+        "y":6
+    },{
+        "id":7,
+        "isSold":true,
+        "x":2,
+        "y":1
+    }, {
+        "id":8,
+        "isSold":false,
+        "x":2,
+        "y":2
+    }, {
+        "id":9,
+        "isSold":true,
+        "x":2,
+        "y":3
+    }, {
+        "id":10,
+        "isSold":false,
+        "x":2,
+        "y":4
+    }, {
+        "id":11,
+        "isSold":false,
+        "x":2,
+        "y":5
+    }, {
+        "id":12,
+        "isSold":false,
+        "x":2,
+        "y":6
+    }, {
+        "id":13,
+        "isSold":false,
+        "x":3,
+        "y":1
+    }, {
+        "id":14,
+        "isSold":false,
+        "x":3,
+        "y":2
+    }, {
+        "id":15,
+        "isSold":false,
+        "x":3,
+        "y":3
+    }, {
+        "id":16,
+        "isSold":false,
+        "x":3,
+        "y":4
+    }, {
+        "id":17,
+        "isSold":false,
+        "x":3,
+        "y":5
+    }, {
+        "id":18,
+        "isSold":false,
+        "x":3,
+        "y":6
+    }, {
+        "id":19,
+        "isSold":false,
+        "x":4,
+        "y":1
+    }
+]

@@ -10,7 +10,7 @@ export class LearnReact extends Component {
         }
         this.ref = React.createRef();
     }
-
+    
     close = () =>{
         this.setState({
             visiable:false
@@ -48,7 +48,7 @@ export class LearnReact extends Component {
 
 
         const module = (
-            <div className={styles['container']}>
+            <div className={styles['container']}  onClick={ (e)=>console.log(e.clientX) }>
                 <input placeholder="这是一个输入框" ref={this.ref} onChange={this.input} />
                 { modal }
             </div>

@@ -15,7 +15,7 @@
     },
     "rules": {
         "no-console":"off",
-        "react/no-direct-mutation-state":"off",
+        // "react/no-direct-mutation-state":"off",
         "no-debugger":"off"
     }
 }
