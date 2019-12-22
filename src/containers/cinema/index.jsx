@@ -3,7 +3,7 @@ import styles from './index.scss'
 import collect from '../../assets/cinema/collect.png'
 import collected from '../../assets/cinema/collected.png'
 import success from '../../assets/cinema/success.png'
-import data from './data.json'
+import axios from 'axios'
 
 const Headers = () => {
     return (
@@ -26,8 +26,8 @@ const Footer = () => {
 class Cinema extends Component {
     constructor(props){
         super(props)
-        this.canvas = React.createRef()
         this.state = {
+            data:null,
             IMAGE_HEIGHT:50,
             IMAGE_WIDTH:50,
             selectId:[],
@@ -35,16 +35,33 @@ class Cinema extends Component {
     }
 
     componentDidMount(){
-        this.createImg()
-        console.log(data)
+        this.getData()
+    }
+
+    getData = () => {
+        axios.get('/api/getSeatInfo').then((json)=>{
+            this.setState({
+                data:json.data
+            },()=>{
+                const { IMAGE_HEIGHT,IMAGE_WIDTH } = this.state
+                let canvasDom = document.createElement('canvas')
+                canvasDom.width = IMAGE_WIDTH * 21
+                canvasDom.height = IMAGE_HEIGHT * 6
+                canvasDom.id = 'canvas'
+                canvasDom.onclick = this.choose
+                let middle = document.getElementById('middle')
+                middle.appendChild(canvasDom)
+                this.createImg()
+            })
+        })
     }
 
     createImg = () => {
-        const NoSelectImg = new Image()//document.createElement('img')
-        const SelectImg = new Image()//document.createElement('img')
-        const IsSoldImg = new Image()//document.createElement('img')
+        const NoSelectImg = document.createElement('img')
+        const SelectImg = document.createElement('img')
+        const IsSoldImg = document.createElement('img')
         let count = 0
-        this.ctx = this.canvas.current.getContext('2d');
+        this.ctx = document.getElementById('canvas').getContext('2d');
         const loadCallback = () =>{
             count++
             if(count === 3){
@@ -64,7 +81,7 @@ class Cinema extends Component {
     }
 
     darwImageIntoCanvas = () => {
-        const { IMAGE_HEIGHT,IMAGE_WIDTH,selectId } = this.state
+        const { IMAGE_HEIGHT,IMAGE_WIDTH,selectId,data } = this.state
         data.forEach(item => {
             const offsetX = (item.x - 1)*IMAGE_WIDTH
             const offsetY = (item.y - 1)*IMAGE_HEIGHT
@@ -81,41 +98,40 @@ class Cinema extends Component {
     }
 
     componentDidUpdate(){
-        const { IMAGE_HEIGHT,IMAGE_WIDTH } = this.state
-        this.ctx.clearRect(0,0,IMAGE_WIDTH * data[data.length - 1].x,IMAGE_HEIGHT * 6)
-        this.darwImageIntoCanvas()
+        if(this.ctx&&this.state.data){
+            const { IMAGE_HEIGHT,IMAGE_WIDTH,data } = this.state
+            this.ctx.clearRect(0,0,IMAGE_WIDTH * data[data.length - 1].x,IMAGE_HEIGHT * 6)
+            this.darwImageIntoCanvas()
+        }
+        
     }
 
     choose = (e) => {
-        let { selectId } = this.state
-        const offsetTop = this.canvas.current.offsetTop
-        const clickX = Math.ceil(e.pageX / 50)
+        let { selectId,data } = this.state
+        const offsetTop = document.getElementById('canvas').offsetTop
+        const scrollLeft = document.getElementById('middle').scrollLeft
+        const clickX = Math.ceil((e.pageX + scrollLeft) / 50)
         const clickY = Math.ceil((e.pageY - offsetTop) / 50)
         let seatId = ''
-        data.forEach( item => {
+        for (const item of data) {
             if(item.x ===clickX&&item.y===clickY){
-                // throw new console.error('end----');
                 if(item.isSold){
-                    throw new console.error('end----');
+                    return
                 }else{
                     seatId = item.id
                 }
-                
             }
-        } )
+        }
         const index = this.state.selectId.indexOf(seatId)
         index > -1 ? selectId.splice(index,1) : selectId.push(seatId)
         this.setState({ selectId });
     }
 
     render() {
-        const { IMAGE_HEIGHT,IMAGE_WIDTH } = this.state
         const module = (
             <div className={styles['container']}>
                 <Headers />
-                <div className={styles['middle']}>
-                    <canvas width={ IMAGE_WIDTH * data[data.length - 1].x } height={IMAGE_HEIGHT * 6} onClick={this.choose} ref={this.canvas} ></canvas>
-                </div>
+                <div className={styles['middle']} id='middle'></div>
                 <Footer />
             </div>
         )
