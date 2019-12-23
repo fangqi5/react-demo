@@ -7,7 +7,9 @@ export class LearnReact extends Component {
     constructor(props){
         super(props);
         this.state = {
-            visiable:false
+            visiable:false,
+            inputValue:'',
+            inputPassword:''
         }
         this.ref = React.createRef();
     }
@@ -46,8 +48,29 @@ export class LearnReact extends Component {
         })
     }
 
+    inputValue = (e) =>{
+        this.setState({
+            inputValue:e.target.value
+        })
+    }
+
+    inputPassword = (e) =>{
+        this.setState({
+            inputPassword:e.target.value
+        })
+    }
+
+    queryUserExist = () => {
+        const { inputValue,inputPassword } = this.state
+        console.log(inputValue,inputPassword)
+        axios.get('/api/findUser',{params:{ userId:inputValue,password:inputPassword }}).then((json)=>{
+            console.log(json)
+        })
+    }
+
     render() {
         const { visiable } = this.state
+        const { inputValue,inputPassword } = this.state
         const modal = (
             <Fragment>
                 <div onClick={this.show}>测试弹窗</div>
@@ -73,6 +96,10 @@ export class LearnReact extends Component {
                 <button onClick={this.addQuery}>点击按钮新增</button>
                 <button onClick={this.updateQuery}>点击按钮更新</button>
                 <button onClick={this.delQuery}>点击按钮删除</button>
+                <br /><br /><br /><br /><br /><br />
+                请输入账号：<input type="number" value={inputValue} onChange={this.inputValue} />
+                请输入密码：<input type="text" value={inputPassword} onChange={this.inputPassword} />
+                <button onClick={this.queryUserExist}>登录</button>
             </div>
         )
         return module;
