@@ -23,7 +23,7 @@ module.exports=merge(base,{
         historyApiFallback:true,
         proxy: {
             '/api': {
-              target: 'http://localhost:3001',
+              target: 'http://localhost:3004',
               pathRewrite: {'^/api' : ''},
               changeOrigin: true,     // target是域名的话，需要这个参数，
               secure: false,          // 设置支持https协议的代理

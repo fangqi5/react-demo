@@ -1,0 +1,41 @@
+.content{
+    width: 1200px;
+    height: 800px;
+    margin: 0 auto;
+    border: 1px red solid;
+    ul{
+        width: 200px;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        float: left;
+        li{
+            height: 150px;
+            width: 150px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-top: 20px;
+            img{
+                height: 100%;
+                width: 100%;
+            }
+        }
+        .active{
+            border: 5px red solid;
+        }
+    }
+    .mainpic{
+        width: 800px;
+        height: 700px;
+        margin-left: 250px;
+        margin-top: 20px;
+        border: 1px orange solid;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

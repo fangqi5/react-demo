@@ -34,15 +34,19 @@ router.get('/findUser', function(req, res, next) {
 	var password = req.query.password
 	connection.query(`SELECT * FROM user_info WHERE userId=?`,userId,function(error,result,fields){
 		if(result.length>0){
-			connection.query(`SELECT * FROM user_info WHERE password=?`,password,function(error1,result1,fields1){
-				if(result1.length>0){
-					res.send({
-						code:200,
-						success:true,
-						data:result1
-					})
-				}
-			})
+			if(password === result[0].password){
+				res.send({
+					code:200,
+					success:true,
+					data:result
+				})
+			}else{
+				res.send({
+					code:404,
+					success:false,
+					data:result
+				})
+			}
 		}else{
 			res.send({
 				code:404,

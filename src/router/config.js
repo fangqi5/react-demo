@@ -25,7 +25,7 @@ const Echarts = Loadable({
 })
 
 const LearnReact = Loadable({
-    loader: () => import("CONTAINERS/learnreact/index"),
+    loader: () => import("CONTAINERS/learnreact/test"),
     loading: Loading,
     timeout,
 })
@@ -80,6 +80,12 @@ const F2chart = Loadable({
 
 const Cinema = Loadable({
     loader: () => import("CONTAINERS/cinema/index"),
+    loading: Loading,
+    timeout,
+})
+
+const PPT = Loadable({
+    loader: () => import("CONTAINERS/ppt/index"),
     loading: Loading,
     timeout,
 })
@@ -144,6 +150,11 @@ const routerConfig=[{
 {
     path: "/cinema",
     component: Cinema,
+    exact: true
+},
+{
+    path: "/ppt",
+    component: PPT,
     exact: true
 }]
 
