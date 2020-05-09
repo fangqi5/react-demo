@@ -1,10 +1,25 @@
 var express = require('express');
 var router = express.Router();
 var connection = require('../connection.js')
-
+import { renderToString } from 'react-dom/server'//引入renderToString方法
+import Canvas from'../canvas'
+const content = renderToString(<Canvas/>)
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+	res.send(
+		`
+	<html>
+	   <head>
+		   <title>ssr demo</title>
+	   </head>
+	   <body>
+		   ${content}
+		   Hello world+
+	   </body>
+	   <script src="./index.js"></script>
+	</html>
+	`
+	)
 });
 
 router.get('/list', function(req, res, next) {

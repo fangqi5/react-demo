@@ -15,7 +15,8 @@ module.exports={
             ASSETS:"src/assets",
             ROUTER:"src/router",
             CONTAINERS:"src/containers",
-            VIEWS:"src/views"
+            VIEWS:"src/views",
+            UTILS:"src/utils"
         },
 		extensions: [ ".web.js", ".js", ".jsx", ".less", ".css", ".json", ".scss" ] //自动解析的扩展
     },

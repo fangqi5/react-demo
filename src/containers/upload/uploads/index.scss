@@ -1,0 +1,20 @@
+.upload{
+  width: 800px;
+  height: 700px;
+  margin: 50px auto 0;
+  border: 1px red solid;
+}
+:global{
+  .avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  // .ant-upload .ant-upload-select .ant-upload-select-picture-card{
+  //   width: 100%;
+  //   height: auto;
+  // }
+  .ant-upload-select-picture-card{
+    background-color: red !important;
+  }
+}

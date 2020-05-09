@@ -1,0 +1,17 @@
+.wrap{
+    text-align: center;
+    .select-item{
+        height: 30px;
+        width: 580px;
+        margin: 0 auto;
+        line-height: 30px;
+        padding-left: 20px;
+        list-style:none;
+        background-color: #ccc;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+    .active{
+        background-color: rgba(#d11818,0.5);
+    }
+}

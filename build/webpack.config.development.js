@@ -4,7 +4,11 @@ var webpack = require("webpack");
 const base = require("./webpack.config.base");
 const merge = require("webpack-merge");
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-
+const modifyVars = {
+    "primary-color": "#0ba29a",
+    "link-color": "#0ba29a",
+    "border-radius-base": "2px",
+}
 module.exports=merge(base,{
     mode:"development",
     devtool:"source-map",
@@ -66,6 +70,37 @@ module.exports=merge(base,{
                     },
                 ]
             },
+			{
+				test: /\.less$/,
+				include: /(src|MiniHeader)/,
+				use: [{
+					loader: "style-loader" // creates style nodes from JS strings
+				}, {
+					loader: "css-loader",   // translates CSS into CommonJS
+					options: {
+						modules: true, //class局部作用域
+						localIdentName: "[local]--[hash:base64:5]"
+					}
+				}, {
+					loader: "less-loader", // compiles Less to CSS
+				}]
+			},
+			{
+				test: /\.less$/,
+				include: /(node_modules)/,
+				exclude: /MiniHeader/,
+				use: [{
+					loader: "style-loader" // creates style nodes from JS strings
+				}, {
+					loader: "css-loader",   // translates CSS into CommonJS
+				}, {
+					loader: "less-loader", // compiles Less to CSS
+					options: {
+						modifyVars: modifyVars,
+						javascriptEnabled: true
+					}
+				}]
+			},
         ]
     },
     plugins:[

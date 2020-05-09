@@ -85,13 +85,13 @@ export class Canvas extends Component {
     }
 
     onMouseDown = () => {
-        
+        alert('1111111')
     }
 
     render() {
         return (
             <div className='container'>
-                <canvas id="canvas_1" height="500" width="500" onMouseDown={this.onMouseDown}>
+                <canvas id="canvas_1" height="500" width="500" style={{border:'1px solid red'}}  onMouseDown={this.onMouseDown}>
                 </canvas>
             </div>
         )

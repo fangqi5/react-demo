@@ -118,9 +118,22 @@ class EchartsTest extends Component {
         });
     }
 
+    setData = () => {
+        this.setState({
+            averageValue:[80,60,40,104],
+            maxValue:[100,65,79,86],
+            date:['8.5-8.11', '8.12-8.18', '8.19-8.25', '8.26-9.1']
+        },()=>{
+            this.initTab()
+        })
+    }
+
     render() {
         return (
-            <div className={styles['main']} id="main" style={{height:400,width:400}}></div>
+            <>
+                <div className={styles['main']} id="main" style={{height:400,width:400}}></div>
+                <button onClick={this.setData}>点我改变数据</button>
+            </>
         );
     }
 }

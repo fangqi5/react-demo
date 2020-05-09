@@ -8,6 +8,14 @@ export class ApplyHandle extends Component {
         visiable:PropTypes.bool
     }
 
+    componentDidMount(){
+        
+    }
+
+    createContainer = () => {
+        this.container = document.createElement('div')
+    }
+
     render() {
         const module = (
             <div className={styles['container']} style={{display:this.props.visiable ? 'block' : 'none'}}>

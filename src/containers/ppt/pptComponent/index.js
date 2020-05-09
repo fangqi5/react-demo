@@ -1,3 +1,7 @@
+/**
+ * 名称：ppt组件
+ * 参数：data:[]
+ */
 import React, { Component } from 'react'
 import styles from './index.scss'
 import PropTypes from 'prop-types'

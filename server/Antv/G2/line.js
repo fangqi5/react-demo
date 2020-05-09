@@ -1,29 +1,25 @@
 import React, { Component } from 'react'
 import { Chart } from '@antv/g2';
-import { Bar } from './stackedhistogram'
-import Line from './line'
 // import dataList from './data'
-export class Gtwo extends Component {
+import PropTypes from 'prop-types'
+
+export class Line extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            data:[
-                { year:'sa1',value:1.2,miss:false },
-                { year:'sa2',value:0.2,miss:false },
-                { year:'sa3',value:null,miss:true },
-                { year:'sa4',value:1.5,miss:false },
-                { year:'sa5',value:2.4,miss:false },
-                { year:'sa6',value:3,miss:false },
-            ]
-        }
     }
 
     componentDidMount(){
-        // this.initBar();
+        this.initBar();
+    }
+
+    componentDidUpdate(prevProps){
+        if(prevProps.data !== this.props.data){
+            this.initBar()
+        }
     }
 
     initBar = () => {
-        const { data } = this.state
+        const { data } = this.props
           // Step 1: 创建 Chart 对象
           const chart = new Chart({
             container: 'c1', // 指定图表容器 ID
@@ -49,27 +45,18 @@ export class Gtwo extends Component {
           chart.render();
     }
 
-    changeData = () => {
-        this.setState({data:[
-            { year:'撒的撒打算1',value:1.2,miss:false },
-            { year:'撒的撒打算2',value:0.2,miss:false },
-            { year:'撒的撒打算3',value:null,miss:true },
-            { year:'撒的撒打算4',value:1.5,miss:false },
-            { year:'撒的撒打算5',value:2.4,miss:false },
-            { year:'撒的撒打算6',value:3,miss:false },
-        ]})
-    }
-
     render() {
-        const { data } = this.state
         return (
             <div>
-                <Line data={data} />
-                <Bar />
-                <button onClick={this.changeData}>点击改变data数据</button>
+                <div id='c1'>
+                </div>
             </div>
         )
     }
 }
 
-export default Gtwo
+export default Line
+
+Line.propTypes = {
+    data:PropTypes.array
+}

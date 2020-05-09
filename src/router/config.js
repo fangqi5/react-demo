@@ -18,6 +18,13 @@ const Antv = Loadable({
     timeout,
 })
 
+const AntvBar = Loadable({
+    loader: () => import("CONTAINERS/Antv/G2/stackedhistogram"),
+    loading: Loading,
+    timeout,
+})
+
+
 const Echarts = Loadable({
     loader: () => import("CONTAINERS/Echarts/index"),
     loading: Loading,
@@ -90,6 +97,25 @@ const PPT = Loadable({
     timeout,
 })
 
+const Video = Loadable({
+    loader: () => import("CONTAINERS/video/index"),
+    loading: Loading,
+    timeout,
+})
+
+const Upload = Loadable({
+    loader: () => import("CONTAINERS/upload/index"),
+    loading: Loading,
+    timeout,
+})
+
+const hooks = Loadable({
+    loader: () => import("CONTAINERS/hooks/index"),
+    loading: Loading,
+    timeout,
+})
+
+
 const routerConfig=[{
     path: "/",
     component: Home, // 2019.9.19 - xx
@@ -98,6 +124,11 @@ const routerConfig=[{
 {
     path: "/g2",
     component: Antv,
+    exact: true
+},
+{
+    path: "/g2/bar",
+    component: AntvBar,
     exact: true
 },
 {
@@ -155,6 +186,21 @@ const routerConfig=[{
 {
     path: "/ppt",
     component: PPT,
+    exact: true
+},
+{
+    path: "/video",
+    component: Video,
+    exact: true
+},
+{
+    path: "/upload",
+    component: Upload,
+    exact: true
+},
+{
+    path: "/hooks",
+    component: hooks,
     exact: true
 }]
 

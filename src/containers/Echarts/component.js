@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import ReactEcharts from 'echarts-for-react'
+    import React, { Component } from 'react'
+    import ReactEcharts from 'echarts-for-react'
 
-export default class Echarts extends Component {
+    export default class Echarts extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -116,4 +116,4 @@ export default class Echarts extends Component {
             </div>
         )
     }
-}
+    }

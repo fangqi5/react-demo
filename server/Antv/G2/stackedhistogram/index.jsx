@@ -170,9 +170,7 @@ export const Bar = () => {
     }, [])
 
     return (
-        <>
-            <div id='chart'>
-            </div>
-        </>
+        <div id='chart'>
+        </div>
     )
 }
