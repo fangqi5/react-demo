@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import styles from './index.scss'
+// import './index.less'
 // import PropTypes from 'prop-types'
 
 function global(){
@@ -86,6 +88,12 @@ export class AboutThis extends Component {
                 <button onClick={ this.callTest }>点击使用call</button>
                 <button onClick={ this.applyTest }>点击使用apply</button>
                 <button onClick={ this.bindTest }>点击使用bind</button>
+                <div className="test-class">11111111111111111111</div>
+                <div className={styles['parent']}>
+                    <div className={styles['children']}>
+                        111
+                    </div>
+                </div>
             </div>
         )
     }

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import moment from 'moment';
 // import PropTypes from 'prop-types'
 
 export class Canvas extends Component {
 
     componentDidMount(){
         this.renderCanvas()
+        console.log(moment(moment(1589522960017).add(1,'day')).format('YYYY-MM-DD'))
     }
 
     renderCanvas = () => {

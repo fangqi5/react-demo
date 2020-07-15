@@ -13,6 +13,9 @@ export class index extends Component {
                 {/* <First /> */}
                 <span>第二阶段实现</span>
                 <Second />
+                <svg className={'iconfont'} aria-hidden="true">
+                    <use xlinkHref={ '#icondianyingpiao' }></use>
+                </svg>
             </div>
         )
     }

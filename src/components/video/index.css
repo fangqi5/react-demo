@@ -1,0 +1,19 @@
+.luv-video-player{
+    position: relative;
+}
+.video-js .vjs-duration {
+    display: block;
+}
+.video-js .vjs-current-time{
+    display: block;
+}
+.video-js .vjs-duration {
+    display: block;
+}
+.video-js.vjs-playing .vjs-tech {
+    pointer-events: auto;
+}
+.videojs-fullscreen{
+    position: fixed;
+    transform: rotate(90deg);
+}

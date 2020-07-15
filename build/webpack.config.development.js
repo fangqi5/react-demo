@@ -31,7 +31,17 @@ module.exports=merge(base,{
               pathRewrite: {'^/api' : ''},
               changeOrigin: true,     // target是域名的话，需要这个参数，
               secure: false,          // 设置支持https协议的代理
-            },
+            },'/server': {
+                target: 'https://webapp.leke.cn/',
+                pathRewrite: {'^/server' : ''},
+                changeOrigin: true,     // target是域名的话，需要这个参数，
+                secure: false,          // 设置支持https协议的代理
+              },'/top': {
+                target: 'https://www.fangqi5.top/',
+                pathRewrite: {'^/top' : ''},
+                changeOrigin: true,     // target是域名的话，需要这个参数，
+                secure: false,          // 设置支持https协议的代理
+              },
           }
     },
     module:{
@@ -78,7 +88,7 @@ module.exports=merge(base,{
 				}, {
 					loader: "css-loader",   // translates CSS into CommonJS
 					options: {
-						modules: true, //class局部作用域
+						modules: false, //class局部作用域
 						localIdentName: "[local]--[hash:base64:5]"
 					}
 				}, {

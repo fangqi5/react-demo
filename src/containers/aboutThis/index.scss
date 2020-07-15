@@ -1,0 +1,10 @@
+.parent{
+    width: 100%;
+    min-height: 740px;
+    background-color: #ddd;
+    .children{
+        display: flex;
+        height: 100%;
+        background-color: rgba(red,0.6);
+    }
+}

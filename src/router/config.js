@@ -115,10 +115,40 @@ const hooks = Loadable({
     timeout,
 })
 
+const chimee = Loadable({
+    loader: () => import("CONTAINERS/player/chimee/index"),
+    loading: Loading,
+    timeout,
+})
+
+const xgplayer = Loadable({
+    loader: () => import("CONTAINERS/player/xgplayer/index"),
+    loading: Loading,
+    timeout,
+})
+
+const videojs = Loadable({
+    loader: () => import("CONTAINERS/player/videojs/index"),
+    loading: Loading,
+    timeout,
+})
+
 
 const routerConfig=[{
     path: "/",
     component: Home, // 2019.9.19 - xx
+    exact: true,
+},{
+    path: "/chimee",
+    component: chimee, // 2019.9.19 - xx
+    exact: true,
+},{
+    path: "/xgplayer",
+    component: xgplayer, // 2019.9.19 - xx
+    exact: true,
+},{
+    path: "/videojs",
+    component: videojs, // 2019.9.19 - xx
     exact: true,
 },
 {
